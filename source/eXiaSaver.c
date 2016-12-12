@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "launcher.h"
 
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[]){ /**Randomly launches one of the three screensavers*/
     system("clear");
     char current_directory[1024];
     char exiasaver_home[1024];

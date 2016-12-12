@@ -16,7 +16,7 @@ int rand_a_b(int a, int b){
     return c;
 }
 
-char *selectPBM(char *pbm_directory){ //TODO : a modifier !!!!!!
+char *selectPBM(char *pbm_directory){
     DIR* rep = opendir(pbm_directory);
     if(rep != NULL){
         struct dirent * ent;

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../PBM/PBM.h"
+#include "../../conio/conio.h"
 
 int main(int argc, char* argv[]){
     if(argc != 2){
@@ -8,6 +9,7 @@ int main(int argc, char* argv[]){
         return -1;
     }
     PBM image;
+    char key;
     strcpy(image.name, argv[1]);
     for(int i=0; i<80; i++){
         for(int j=0; j<24; j++){
@@ -26,6 +28,17 @@ int main(int argc, char* argv[]){
         loadPBM(file, &image);
         fclose(file);
         printPBM(image);
+        system("setterm -cursor off");
+        key = getch();
+        while(1){
+            if(key == 32){
+                system("clear");
+                system("setterm -cursor on");
+                return 0;
+            }else{
+                key = getch();
+            }
+        }
     }else{
         printf("This file can't be opened.\n");
     }

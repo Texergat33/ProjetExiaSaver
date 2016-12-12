@@ -13,12 +13,13 @@ int rand_a_b(int a, int b){
 int main(int argc, char* argv[]){
     system("clear");
     srand(time(NULL));
-    char* current_directory = (char *)get_current_dir_name();
+    char current_directory[1024];
+    getcwd(current_directory, 1024);
     int rnum = rand_a_b(1, 3);
     char* exiasaver_home = getenv("EXIASAVER_HOME");
     if(exiasaver_home == NULL) exiasaver_home = current_directory;
     switch(rnum){
-        case 1
+        case 1:
             char* exiasaver1_pbm = getenv("EXIASAVER1_PBM");
             if(exiasaver1_pbm == NULL) exiasaver1_pbm = current_directory;
             break;

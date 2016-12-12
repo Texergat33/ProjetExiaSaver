@@ -30,15 +30,8 @@ int main(int argc, char* argv[]){
         printPBM(image);
         system("setterm -cursor off");
         key = getch();
-        while(1){
-            if(key == 32){
-                system("clear");
-                system("setterm -cursor on");
-                return 0;
-            }else{
-                key = getch();
-            }
-        }
+        system("clear");
+        system("setterm -cursor on");
     }else{
         printf("This file can't be opened.\n");
     }

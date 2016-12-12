@@ -8,15 +8,16 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <dirent.h>
+#include <string.h>
 
 extern char **environ;
 pid_t create_process(void);
 int rand_a_b(int, int);
 char *selectPBM(char *pbm_directory);
 void execSaver1(char* arguments[], char* exiasaver_home);
-void launchExiaSaver1(char current_directory[1024], char *exiasaver_home, pid_t pid);
-void launchExiaSaver2(char current_directory[1024], char *exiasaver_home, pid_t pid);
-void launchExiaSaver3(char current_directory[1024], char *exiasaver_home, pid_t pid);
+void launchExiaSaver1(char current_directory[1024], char *exiasaver_home);
+void launchExiaSaver2(char current_directory[1024], char *exiasaver_home);
+void launchExiaSaver3(char current_directory[1024], char *exiasaver_home);
 
 
 #endif

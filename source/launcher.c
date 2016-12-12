@@ -15,20 +15,19 @@ int rand_a_b(int a, int b){
     return c;
 }
 
-char *selectPBM(char *pbm_directory){
+char *selectPBM(char *pbm_directory){ //TODO : a modifier !!!!!!
     DIR* rep = opendir(pbm_directory);
     if(rep != NULL){
         struct dirent * ent;
         int count = 0;
         while((ent = readdir(rep)) != NULL){
-            count++;
-
+            if(strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0) count ++;
         }
         int random_nbr = rand_a_b(1, count);
         rewinddir(rep);
         count = 0;
         while(count != random_nbr && (ent = readdir(rep)) != NULL){
-            count ++;
+            if(strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0) count ++;
         }
         closedir(rep);
         return ent->d_name;

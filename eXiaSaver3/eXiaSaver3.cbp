@@ -22,7 +22,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="main.c">
+		<Unit filename="source/eXiaSaver3.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

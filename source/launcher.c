@@ -2,17 +2,6 @@
 #include <stdlib.h>
 #include "launcher.h"
 
-pid_t create_process(void)
-{
-    pid_t pid;
-    do
-    {
-    pid = fork();
-    }
-    while ((pid == -1) && (errno == EAGAIN));
-    return pid;
-}
-
 int rand_a_b(int a, int b)
 {
     srand(time(NULL));
@@ -20,8 +9,7 @@ int rand_a_b(int a, int b)
     return c;
 }
 
-char *selectPBM(char *pbm_directory)
-{ //TODO : a modifier !!!!!!
+char *selectPBM(char *pbm_directory){
     DIR* rep = opendir(pbm_directory);
     if(rep != NULL)
     {

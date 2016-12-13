@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../PBM/PBM.h"
-#include "../../conio/conio.h"
+#include "../../lib/PBM/PBM.h"
+#include "../../lib/conio/conio.h"
 
 int main(int argc, char* argv[])
 {

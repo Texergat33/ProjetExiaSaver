@@ -4,7 +4,6 @@
 
 int main(int argc, char* argv[]){
     system("clear");
-    srand(time(NULL));
     char current_directory[1024];
     char exiasaver_home[1024];
     getcwd(current_directory, 1024);

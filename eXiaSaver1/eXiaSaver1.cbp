@@ -22,10 +22,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="../PBM/PBM.c">
+		<Unit filename="../lib/PBM/PBM.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="../PBM/PBM.h" />
+		<Unit filename="../lib/PBM/PBM.h" />
+		<Unit filename="../lib/conio/conio.h" />
 		<Unit filename="source/eXiaSaver1.c">
 			<Option compilerVar="CC" />
 		</Unit>

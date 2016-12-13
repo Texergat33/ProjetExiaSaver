@@ -43,5 +43,4 @@ void printPBM(PBM p)
         }
         printf("\n");
     }
-    printf("\n");
 }

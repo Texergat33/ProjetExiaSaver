@@ -2,32 +2,40 @@
 #include <stdlib.h>
 #include "launcher.h"
 
-pid_t create_process(void){
+pid_t create_process(void)
+{
     pid_t pid;
-    do {
+    do
+    {
     pid = fork();
-    } while ((pid == -1) && (errno == EAGAIN));
+    }
+    while ((pid == -1) && (errno == EAGAIN));
     return pid;
 }
 
-int rand_a_b(int a, int b){
+int rand_a_b(int a, int b)
+{
     srand(time(NULL));
     int c = rand()%((b+1)-a)+a;
     return c;
 }
 
-char *selectPBM(char *pbm_directory){ //TODO : a modifier !!!!!!
+char *selectPBM(char *pbm_directory)
+{ //TODO : a modifier !!!!!!
     DIR* rep = opendir(pbm_directory);
-    if(rep != NULL){
+    if(rep != NULL)
+    {
         struct dirent * ent;
         int count = 0;
-        while((ent = readdir(rep)) != NULL){
+        while((ent = readdir(rep)) != NULL)
+        {
             if(strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0) count ++;
         }
         int random_nbr = rand_a_b(1, count);
         rewinddir(rep);
         count = 0;
-        while(count != random_nbr && (ent = readdir(rep)) != NULL){
+        while(count != random_nbr && (ent = readdir(rep)) != NULL)
+        {
             if(strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0) count ++;
         }
         closedir(rep);
@@ -36,27 +44,32 @@ char *selectPBM(char *pbm_directory){ //TODO : a modifier !!!!!!
     exit(-1);
 }
 
-void execSaver1(char* arguments[], char* exiasaver_home){
+void execSaver1(char* arguments[], char* exiasaver_home)
+{
     char chemin[1024];
     strcpy(chemin, exiasaver_home);
     strcat(chemin, "/eXiaSaver1/eXiaSaver1");
-    if(execv(chemin, arguments) == -1){
+    if(execv(chemin, arguments) == -1)
+    {
         perror("execv");
         exit(-1);
     }
 }
 
-void execSaver3(char* arguments[], char* exiasaver_home){
+void execSaver3(char* arguments[], char* exiasaver_home)
+{
     char chemin[1024];
     strcpy(chemin, exiasaver_home);
     strcat(chemin, "/eXiaSaver3/eXiaSaver3");
-    if(execv(chemin, arguments) == -1){
+    if(execv(chemin, arguments) == -1)
+    {
         perror("execv");
         exit(-1);
     }
 }
 
-void launchExiaSaver1(char current_directory[1024], char *exiasaver_home){
+void launchExiaSaver1(char current_directory[1024], char *exiasaver_home)
+{
     char* str = getenv("EXIASAVER1_PBM");
     char exiasaver1_pbm[1024];
     if(str != NULL) strcpy(exiasaver1_pbm, str);
@@ -64,7 +77,8 @@ void launchExiaSaver1(char current_directory[1024], char *exiasaver_home){
     char *random_pbm = selectPBM(exiasaver1_pbm);
     char* arguments[] = {"eXiaSaver1", random_pbm, NULL};
     pid_t pid = create_process();
-    switch(pid){
+    switch(pid)
+    {
         case -1:
             perror("fork");
             exit(-1);
@@ -72,7 +86,8 @@ void launchExiaSaver1(char current_directory[1024], char *exiasaver_home){
             execSaver1(arguments, exiasaver_home);
             break;
         default:
-            if (wait(NULL) == -1) {
+            if (wait(NULL) == -1)
+            {
                 perror("wait :");
                 exit(-1);
             }
@@ -80,7 +95,8 @@ void launchExiaSaver1(char current_directory[1024], char *exiasaver_home){
     }
 }
 
-void launchExiaSaver2(char current_directory[1024], char *exiasaver_home){
+void launchExiaSaver2(char current_directory[1024], char *exiasaver_home)
+{
     char exiasaver2_pbm[1024];
     char* str = getenv("EXIASAVER2_PBM");
     if(str != NULL) strcpy(exiasaver2_pbm, str);
@@ -96,14 +112,16 @@ void launchExiaSaver2(char current_directory[1024], char *exiasaver_home){
     printf("Launcher 2\n");
 }
 
-void launchExiaSaver3(char current_directory[1024], char *exiasaver_home){
+void launchExiaSaver3(char current_directory[1024], char *exiasaver_home)
+{
     char exiasaver3_pbm[1024];
     char* str = getenv("EXIASAVER3_PBM");
     if(str != NULL) strcpy(exiasaver3_pbm, str);
     else strcpy(exiasaver3_pbm, current_directory);
     char* arguments[] = {"eXiaSaver3", NULL};
     pid_t pid = create_process();
-    switch(pid){
+    switch(pid)
+    {
         case -1:
             perror("fork");
             exit(-1);
@@ -111,7 +129,8 @@ void launchExiaSaver3(char current_directory[1024], char *exiasaver_home){
             execSaver3(arguments, exiasaver_home);
             break;
         default:
-            if (wait(NULL) == -1) {
+            if (wait(NULL) == -1)
+            {
                 perror("wait :");
                 exit(-1);
             }

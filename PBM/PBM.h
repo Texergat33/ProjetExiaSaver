@@ -5,7 +5,8 @@
 #include <unistd.h>
 
 typedef struct PBM PBM;
-struct PBM{
+struct PBM
+{
     int width;
     int length;
     char name[1024];

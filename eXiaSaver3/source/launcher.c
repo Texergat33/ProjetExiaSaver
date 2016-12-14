@@ -24,12 +24,62 @@ void randomDirection(Plane *plane){
     }
 }
 
+void loadDirection(Plane *plane){
+    char pbm_file[1024];
+    char* str = getenv("EXIASAVER3_PBM");
+    if(str != NULL) strcpy(pbm_file, str);
+    else getcwd(pbm_file, 1024);
+
+    strcat(pbm_file, "/");
+    strcat(pbm_file, plane->img.name);
+    FILE* file = NULL;
+    file = fopen(pbm_file, "r");
+    if(file == NULL){        printf("Error. Can't open PBM file\n");
+        exit(-1);
+    }
+
+    readResolution(file, &plane->img);
+    for(int i=0; i<80; i++){
+        for(int j=0; j<24; j++){
+            plane->img.image[i][j] = 0;
+        }
+    }
+    loadPBM(file, &plane->img);
+    fclose(file);
+}
+
 void movePlane(Plane* plane, char* direction){
     plane->direction = direction;
-    if(strcmp(direction, "left") == 0);
-    else if(strcmp(direction, "up") == 0);
-    else if(strcmp(direction, "right") == 0);
-    else if(strcmp(direction, "down") == 0);
+    PBM sky;
+    sky = createBlankPBM();
+    strcpy(sky.name, "sky");
+
+    if(strcmp(direction, "left") == 0){
+        strcpy(plane->img.name, "planeHG.pbm");
+        loadDirection(plane);
+        plane->posX -= 3;
+        placePBM(&sky, &plane->img, plane->posX,plane->posY);
+
+    }
+    else if(strcmp(direction, "up") == 0){
+        strcpy(plane->img.name, "planeVH.pbm");
+        loadDirection(plane);
+        plane->posY -= 1;
+        placePBM(&sky, &plane->img, plane->posX,plane->posY);
+    }
+    else if(strcmp(direction, "right") == 0){
+        strcpy(plane->img.name, "planeHD.pbm");
+        loadDirection(plane);
+        plane->posX += 3;
+        placePBM(&sky, &plane->img, plane->posX,plane->posY);
+    }
+    else if(strcmp(direction, "down") == 0){
+        strcpy(plane->img.name, "planeVB.pbm");
+        loadDirection(plane);
+        plane->posY += 1;
+        placePBM(&sky, &plane->img, plane->posX,plane->posY);
+    }
+    plane->img = sky;
     system("clear");
     printPBM(plane->img);
 }

@@ -60,6 +60,7 @@ PBM createBlankPBM()
             pbm.image[i][j] = 0;
         }
     }
+    return PBM;
 }
 
 void placePBM (PBM *dst, PBM *source, int x, int y)

@@ -2,7 +2,29 @@
 #include "../../lib/conio/conio.h"
 #define SIZEKEY 256
 
-void movePlane(Plane* plane, const char* direction){
+void randomDirection(Plane *plane){
+    int nbr = rand_a_b(1, 4);
+    switch(nbr){
+        case 1:
+            plane->direction = "right";
+            strcpy(plane->img.name, "planeHD.pbm");
+            break;
+        case 2:
+            plane->direction = "left";
+            strcpy(plane->img.name, "planeHG.pbm");
+            break;
+        case 3:
+            plane->direction = "up";
+            strcpy(plane->img.name, "planeVH.pbm");
+            break;
+        case 4:
+            plane->direction = "down";
+            strcpy(plane->img.name, "planeVB.pbm");
+            break;
+    }
+}
+
+void movePlane(Plane* plane, char* direction){
     plane->direction = direction;
     if(strcmp(direction, "left") == 0);
     else if(strcmp(direction, "up") == 0);

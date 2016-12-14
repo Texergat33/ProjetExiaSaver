@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1481635560 source:/home/agathe/projet/ProjetExiaSaver/source/eXiaSaver.c
+	<stdio.h>
+	<stdlib.h>
+	"launcher.h"
+
+1481622451 /home/agathe/projet/ProjetExiaSaver/source/launcher.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<sys/wait.h>
+	<dirent.h>
+	<string.h>
+
+1481633607 source:/home/agathe/projet/ProjetExiaSaver/source/launcher.c
+	<stdio.h>
+	<stdlib.h>
+	"launcher.h"
+

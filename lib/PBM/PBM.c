@@ -33,14 +33,43 @@ void readResolution(FILE *file, PBM* p)
 void printPBM(PBM p)
 {
 	char c[] = {226, 150, 136, 0};
-    for (int i = 0 ;i < 24; i++){
-        for (int j = 0;j < 80; j++){
-            if(p.image[j][i] == 0){
+    for (int i = 0 ;i < 24; i++)
+    {
+        for (int j = 0;j < 80; j++)
+        {
+            if(p.image[j][i] == 0)
+            {
                 printf(" ");
-            }else{
+            }
+            else
+            {
                 printf("%s", c);
             }
         }
         printf("\n");
+    }
+}
+
+PBM createBlankPBM()
+{
+    PBM pbm;
+    for(int i=0; i<80, i++)
+    {
+        for(int j=0, j<24, j++)
+        {
+            pbm.image[i][j] = 0;
+        }
+    }
+    return PBM;
+}
+
+void placePBM (PBM *dst, PBM *source, int x, int y)
+{
+    for(int i = 0, i < source->length, i++)
+    {
+        for(int j = 0, i < source->width, j++)
+        {
+            dst->image[(x+i)%dst->length][y+j] = source->image[i][j];
+        }
     }
 }

@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1481652625 source:/home/agathe/projet/ProjetExiaSaver/eXiaSaver1/source/eXiaSaver1.c
+	<stdio.h>
+	<stdlib.h>
+	"../../lib/PBM/PBM.h"
+	"../../lib/conio/conio.h"
+
+1481637459 /home/agathe/projet/ProjetExiaSaver/lib/PBM/PBM.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<unistd.h>
+
+1481636694 /home/agathe/projet/ProjetExiaSaver/lib/conio/conio.h
+	<termios.h>
+	<unistd.h>
+	<stdio.h>
+
+1481637459 source:/home/agathe/projet/ProjetExiaSaver/lib/PBM/PBM.c
+	"PBM.h"
+
+1481637459 source:/home/agathe/ProjetExiaSaver/lib/PBM/PBM.c
+	"PBM.h"
+
+1481637459 /home/agathe/ProjetExiaSaver/lib/PBM/PBM.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<unistd.h>
+
+1481726904 source:/home/agathe/ProjetExiaSaver/eXiaSaver1/source/eXiaSaver1.c
+	<stdio.h>
+	<stdlib.h>
+	"../../lib/PBM/PBM.h"
+	"../../lib/conio/conio.h"
+
+1481636694 /home/agathe/ProjetExiaSaver/lib/conio/conio.h
+	<termios.h>
+	<unistd.h>
+	<stdio.h>
+

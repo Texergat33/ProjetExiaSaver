@@ -1,11 +1,11 @@
 #include "launcher.h"
 
 int main(int argc, char* argv[]){
-    PBM Plane;
-    strcpy(Plane.name, "planeHD.pbm");
+    Plane plane;
+    randomDirection(&plane);
     for(int i=0; i<80; i++){
         for(int j=0; j<24; j++){
-            Plane.image[i][j] = 0;
+            plane.img.image[i][j] = 0;
         }
     }
 
@@ -15,17 +15,17 @@ int main(int argc, char* argv[]){
     else getcwd(pbm_file, 1024);
 
     strcat(pbm_file, "/");
-    strcat(pbm_file, Plane.name);
+    strcat(pbm_file, plane.img.name);
     FILE* file = NULL;
     file = fopen(pbm_file, "r");
     if(file == NULL){        printf("Error. Can't open PBM file\n");
         return -1;
     }
 
-    readResolution(file, &Plane);
-    loadPBM(file, &Plane);
+    readResolution(file, &plane.img);
+    loadPBM(file, &plane.img);
     fclose(file);
-    printPBM(Plane);
+    printPBM(plane.img);
     pipe(pipeDescriptor);
     pid_t pid = create_process();
     switch(pid){
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
             break;
         default:
             system("setterm -cursor off");
-            father_process();
+            father_process(&plane);
             break;
     }
     system("clear");

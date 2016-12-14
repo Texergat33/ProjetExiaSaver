@@ -1,5 +1,16 @@
 #include "launcher.h"
+#include "../../lib/conio/conio.h"
 #define SIZEKEY 256
+
+void movePlane(Plane* plane, const char* direction){
+    plane->direction = direction;
+    if(strcmp(direction, "left") == 0);
+    else if(strcmp(direction, "up") == 0);
+    else if(strcmp(direction, "right") == 0);
+    else if(strcmp(direction, "down") == 0);
+    system("clear");
+    printPBM(plane->img);
+}
 
 void child_process(){
     char key[1];
@@ -46,7 +57,7 @@ void child_process(){
     exit(0);
 }
 
-void father_process(){
+void father_process(Plane *plane){
     char* key = malloc(SIZEKEY);
     int quit = 1;
     while(quit){
@@ -57,16 +68,16 @@ void father_process(){
                 quit = 0;
                 break;
             case 'l':
-                //deplacer vers la gauche
+                movePlane(plane, "left");
                 break;
             case 'u':
-                //deplacer vers le haut
+                movePlane(plane, "up");
                 break;
             case 'r':
-                //deplacer vers la droite
+                movePlane(plane, "right");
                 break;
             case 'd':
-                //deplacer vers le bas
+                movePlane(plane, "down");
                 break;
             default:
                 break;

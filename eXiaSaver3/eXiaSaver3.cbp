@@ -22,9 +22,17 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="../lib/PBM/PBM.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lib/PBM/PBM.h" />
 		<Unit filename="source/eXiaSaver3.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="source/launcher.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="source/launcher.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

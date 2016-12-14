@@ -2,13 +2,6 @@
 #include <stdlib.h>
 #include "launcher.h"
 
-int rand_a_b(int a, int b)
-{
-    srand(time(NULL));
-    int c = rand()%((b+1)-a)+a;
-    return c;
-}
-
 char *selectPBM(char *pbm_directory){
     DIR* rep = opendir(pbm_directory);
     if(rep != NULL)

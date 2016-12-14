@@ -64,6 +64,13 @@ void launchExiaSaver1(char current_directory[1024], char *exiasaver_home)
     else strcpy(exiasaver1_pbm, current_directory);
     char *random_pbm = selectPBM(exiasaver1_pbm);
     char* arguments[] = {"eXiaSaver1", random_pbm, NULL};
+    FILE* logfile = NULL;
+    logfile = fopen("historique.txt","a+");
+    if (logfile!=NULL)
+    {
+        fprintf(logfile,"%s\n", random_pbm);
+        fclose(logfile);
+    }
     pid_t pid = create_process();
     switch(pid)
     {

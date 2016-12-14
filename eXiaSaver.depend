@@ -20,3 +20,31 @@
 	<stdlib.h>
 	"launcher.h"
 
+1481637459 source:/home/agathe/ProjetExiaSaver/source/launcher.c
+	<stdio.h>
+	<stdlib.h>
+	"launcher.h"
+
+1481636694 /home/agathe/ProjetExiaSaver/source/launcher.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<sys/wait.h>
+	<dirent.h>
+	<string.h>
+	"../lib/fork/fork.h"
+
+1481636694 /home/agathe/ProjetExiaSaver/lib/fork/fork.h
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<errno.h>
+
+1481726705 source:/home/agathe/ProjetExiaSaver/source/eXiaSaver.c
+	<stdio.h>
+	<stdlib.h>
+	"launcher.h"
+

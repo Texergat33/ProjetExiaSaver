@@ -1,7 +1,1 @@
-#Historique des écrans de veille
-#Date au format JJ/MM/AAAA HH:MM:SS
-#1 : Ecran statique affiche
-#2 : Ecran dynamique affiche
-#3 : Ecran interactif affiche
-
-13/12/2016 14:29:05;2;
+Statique;14/12/2016 16:27:14;/home/agathe/ProjetExiaSaver/eXiaSaver1/pbm/ex06.pbm

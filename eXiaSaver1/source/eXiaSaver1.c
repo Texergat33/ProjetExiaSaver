@@ -3,7 +3,7 @@
 #include "../../lib/PBM/PBM.h"
 #include "../../lib/conio/conio.h"
 
-int main(int argc, char* argv[])
+int main (int argc, char* argv[])
 {
     if(argc != 2)
     {

@@ -2,6 +2,8 @@
 
 int main(int argc, char* argv[]){
     Plane plane;
+    plane.posX = 0;
+    plane.posY = 0;
     randomDirection(&plane);
     for(int i=0; i<80; i++){
         for(int j=0; j<24; j++){

@@ -53,6 +53,8 @@ void printPBM(PBM p)
 PBM createBlankPBM()
 {
     PBM pbm;
+    pbm.length = 80;
+    pbm.width = 24;
     for(int i=0; i<80; i++)
     {
         for(int j=0; j<24; j++)
@@ -63,13 +65,15 @@ PBM createBlankPBM()
     return pbm;
 }
 
-void placePBM (PBM *dst, PBM *source, int x, int y)
+void placePBM(PBM *dst, PBM *source, int x, int y)
 {
-    for(int i = 0; i < source->length; i++)
-    {
-        for(int j = 0; i < source->width; j++)
-        {
-            dst->image[(x+i)%dst->length][y+j] = source->image[i][j];
-        }
-    }
+	int i, j;
+
+	for (i = 0; i < dst->length; ++i)
+	{
+		for (j = 0; j < dst->width; ++j)
+		{
+            dst->image[((x+dst->length)+i)%dst->length][((y+dst->width)+j)%dst->width] = source->image[i][j];
+		}
+	}
 }

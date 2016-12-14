@@ -17,4 +17,4 @@ void readResolution(FILE *file, PBM*);
 void loadPBM(FILE *file, PBM*);
 void printPBM(PBM);
 PBM createBlankPBM();
-void placePBM (PBM dst, PBM source, int x, int y);
+void placePBM (PBM *dst, PBM *source, int x, int y);

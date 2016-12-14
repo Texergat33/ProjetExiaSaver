@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
         case 2:
             //system("sort -d historique.txt"
             break;
-        case default:
+        default:
             //Ce n'est pas un choix valide.
             break;
         }

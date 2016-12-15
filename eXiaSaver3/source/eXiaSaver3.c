@@ -2,8 +2,15 @@
 
 int main(int argc, char* argv[]){
     Plane plane;
-    plane.posX = 0;
-    plane.posY = 0;
+    if(argc == 2){
+        char* position = argv[1];
+        sscanf(position, "%dx%d", &plane.posX, &plane.posY);
+        plane.posX = (plane.posX-(80/2));
+        plane.posY = (plane.posY-(24/2));
+    }else{
+        plane.posX = 0;
+        plane.posY = 0;
+    }
     randomDirection(&plane);
     for(int i=0; i<80; i++){
         for(int j=0; j<24; j++){
@@ -27,7 +34,7 @@ int main(int argc, char* argv[]){
     readResolution(file, &plane.img);
     loadPBM(file, &plane.img);
     fclose(file);
-    printPBM(plane.img);
+    movePlane(&plane);
     pipe(pipeDescriptor);
     pid_t pid = create_process();
     switch(pid){

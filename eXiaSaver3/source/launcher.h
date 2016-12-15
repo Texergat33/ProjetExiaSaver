@@ -19,5 +19,6 @@ void child_process();
 void father_process(Plane* plane);
 void movePlane(Plane* plane, char* direction);
 void randomDirection(Plane *plane);
+void loadDirection(Plane *plane);
 
 #endif

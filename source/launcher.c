@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include "launcher.h"
 
-char *selectPBM(char *pbm_directory){
+char *selectPBM(char *pbm_directory){ //select a random pbm name
     DIR* rep = opendir(pbm_directory);
     if(rep != NULL)
     {
         struct dirent * ent;
-        int count = 0;
+        int count = 0; //count the number of pbms in the directory
         while((ent = readdir(rep)) != NULL)
         {
             if(strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0) count ++;
@@ -133,7 +133,7 @@ void launchExiaSaver3(char current_directory[1024], char *exiasaver_home)
     char* str = getenv("EXIASAVER3_PBM");
     if(str != NULL) strcpy(exiasaver3_pbm, str);
     else strcpy(exiasaver3_pbm, current_directory);
-    int x = rand_a_b(0, 80);
+    int x = rand_a_b(0, 80); //define a random plane position
     int y = rand_a_b(0, 24);
     char position[10];
     sprintf(position, "%dx%d", x, y);

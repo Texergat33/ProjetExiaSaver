@@ -6,7 +6,7 @@
 #include <time.h>
 #include <string.h>
 
-#define TAILLE_MAX 40                                                   //Définit TAILLE_MAX à 40
+#define TAILLE_MAX 255                                                   //Définit TAILLE_MAX à 40
 void printStats();                                                 //Fonction permettant l'affichage des statistiques
 void logger(int, char*);
 

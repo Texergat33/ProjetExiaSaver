@@ -2,12 +2,17 @@
 
 void printStats()                                                 //Fonction permettant l'affichage des statistiques
 {
-    int choice, level;
+    int choice;
+    char* level = "";
     char* loginfo = "";
     char* date = "";
     char* hour = "";
     char* launcher = "";
-    FILE* file = fopen("history.txt", "r");
+    FILE* file = NULL;
+    file = fopen("history.txt", "r");
+    char* item;
+    int i=0;
+    char line[TAILLE_MAX];
     if(file != NULL){
         do{
             printf("Stats\n\nDo you want to display sorted history :\n1.In chronological order ?\n2.By screen saver type ?\nYour choice : ");
@@ -15,20 +20,19 @@ void printStats()                                                 //Fonction per
             switch(choice)
             {
                 case 1:
-                    while(fscanf(file, "%s %s;%d;%s", date, hour, &level, loginfo) != EOF){
-                        switch(level){
-                            case 1:
-                                launcher = "static";
-                                break;
-                            case 2:
-                                launcher = "dynamic";
-                                break;
-                            case 3:
-                                launcher = "interactive";
-                                break;
+                        while(fgets(line, TAILLE_MAX, file) != NULL){
+                            for (item = strtok(line, ";"); item != NULL; item = strtok(NULL, ";")){
+                                if(i==0) date = item;
+                                else if(i==2) level = item;
+                                else if(i==3) loginfo = item;
+                                i++;
+                            }
+                            printf("\n%s\n", level);
+                            if(strcmp(level, "1")==0) launcher = "static";
+                            else if(strcmp(level, "2")==0) launcher = "dynamic";
+                            else if(strcmp(level, "3")==0) launcher = "interactive";
+                            printf("%s, the %s saver has been launched with the %s parameter\n", date, launcher, loginfo);
                         }
-                        printf("%s, the %s saver has been launched with the %s parameter\n", date, launcher, loginfo);
-                    }
                     break;
                 case 2:
                     //system("sort -d historique.txt"

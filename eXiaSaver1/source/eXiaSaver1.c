@@ -21,18 +21,18 @@ int main (int argc, char* argv[])
         }
     }
     char pbm_file[1024]; //create a char 
-    char* str = getenv("EXIASAVER1_PBM"); //
-    if(str != NULL) strcpy(pbm_file, str); //
-    else getcwd(pbm_file, 1024); //
+    char* str = getenv("EXIASAVER1_PBM"); //get  the value of the variable of environment in a chain of character
+    if(str != NULL) strcpy(pbm_file, str); //copy the value on pbm file
+    else getcwd(pbm_file, 1024); //copy the absolute way 
     strcat(pbm_file, "/"); //add a "/" at the end of the way of the pbm file
     strcat(pbm_file, image.name); //add the name of the pbm file after the "/"
     FILE* file = fopen(pbm_file, "r"); //open the pbm_file for reading
     if(file != NULL)
     {
-        readResolution(file, &image); //
-        loadPBM(file, &image); //
-        fclose(file); //
-        printPBM(image); //
+        readResolution(file, &image); //read the resolution of the pbm picture
+        loadPBM(file, &image); //load the pbm picture
+        fclose(file); //close the pbm file
+        printPBM(image); //display the pbm picture on the screen
         system("setterm -cursor off"); //remove the cursor of the screen
         key = getch(); //read keyboard inputs without the user needs to press on entry
         system("clear"); //erase the console

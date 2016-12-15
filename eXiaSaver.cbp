@@ -23,6 +23,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="lib/stats/hist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/stats/hist.h" />
 		<Unit filename="source/eXiaSaver.c">
 			<Option compilerVar="CC" />
 		</Unit>

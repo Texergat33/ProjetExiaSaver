@@ -11,6 +11,7 @@
 #include <string.h>
 #include "../lib/fork/fork.h"
 #include "../lib/rand/rand.h"
+#include "../lib/stats/hist.h"
 
 extern char **environ;
 char *selectPBM(char *pbm_directory);/**Selects a file in a directory randomly*/

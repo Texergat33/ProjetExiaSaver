@@ -106,7 +106,11 @@ void launchExiaSaver3(char current_directory[1024], char *exiasaver_home)
     char* str = getenv("EXIASAVER3_PBM");
     if(str != NULL) strcpy(exiasaver3_pbm, str);
     else strcpy(exiasaver3_pbm, current_directory);
-    char* arguments[] = {"eXiaSaver3", NULL};
+    int x = rand_a_b(0, 80);
+    int y = rand_a_b(0, 24);
+    char position[10] = "";
+    sprintf(position, "%dx%d", x, y);
+    char* arguments[] = {"eXiaSaver3", position, NULL};
     pid_t pid = create_process();
     switch(pid)
     {

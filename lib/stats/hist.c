@@ -27,7 +27,6 @@ void printStats()                                                 //Fonction per
                                 else if(i==3) loginfo = item;
                                 i++;
                             }
-                            printf("\n%s\n", level);
                             if(strcmp(level, "1")==0) launcher = "static";
                             else if(strcmp(level, "2")==0) launcher = "dynamic";
                             else if(strcmp(level, "3")==0) launcher = "interactive";

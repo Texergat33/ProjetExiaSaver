@@ -58,20 +58,4 @@ void logger(int level, char *loginfo) /*Fonction pour ecrire dans le fichier his
     sprintf(text, "%02u/%02u/%04u %02u:%02u:%02u;%d;%s;\n", t->tm_mday, t->tm_mon,1900 + t->tm_year, t->tm_hour, t->tm_min, t->tm_sec, level, loginfo);
     fputs(text, file);
     fclose(file);
-
-    /*file = fopen("history.txt", "a+" );
-    time_t now = time (NULL);
-    struct tm tm_now = *localtime (&now);
-    char s_now[sizeof "JJ/MM/AAAA HH:MM:SS"];
-    strftime (s_now, sizeof s_now, "%d/%m/%Y %H:%M:%S", &tm_now);
-    if (file!=NULL)
-    {
-        fprintf(file,"%s",s_now);
-        fputs(";", file);
-        fputs(insertion, file);
-        fputs(";", file);
-        fputs(loginfo, file);
-        fputs("\n ", file);
-        fclose(file);
-    }*/
 }

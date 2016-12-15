@@ -34,7 +34,7 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
         switch(hourArray[i])//We will read the table to get the pbm files corresponding to the hour
         {
         case 0://We will explain only for the first case, it's the same thing with a different file
-            file = fopen("../pbm/num0.pbm", "r");//We open the concerned PBM file in read only mode
+            file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num0.pbm", "r");//We open the concerned PBM file in read only mode
             for(int a = 0; a < 2 ; a++)
             {
                 fgets(lineRead, 71,file);//This line's purpose is that we don't want to print the magic number of the file and it's dimensions
@@ -51,7 +51,7 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
             break;
 
         case 1:
-            file = fopen("../pbm/num1.pbm", "r");
+            file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num1.pbm", "r");
             for(int b = 0; b < 2 ; b++)
             {
                 fgets(lineRead, 71,file);
@@ -68,7 +68,7 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
             break;
 
         case 2:
-            file = fopen("../pbm/num2.pbm", "r");
+            file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num2.pbm", "r");
             for(int c =0; c< 2 ; c++)
             {
                 fgets(lineRead, 71,file);
@@ -85,7 +85,7 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
             break;
 
         case 3:
-            file = fopen("../pbm/num3.pbm", "r");
+            file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num3.pbm", "r");
             for(int q =0; q< 2 ; q++)
             {
                 fgets(lineRead, 71,file);
@@ -102,7 +102,7 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
             break;
 
         case 4:
-            file = fopen("../pbm/num4.pbm", "r");
+            file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num4.pbm", "r");
             for(int e =0; e< 2 ; e++)
             {
                 fgets(lineRead, 71,file);
@@ -119,7 +119,7 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
             break;
 
         case 5:
-            file = fopen("../pbm/num5.pbm", "r");
+            file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num5.pbm", "r");
             for(int f =0; f< 2 ; f++)
             {
                 fgets(lineRead, 71,file);
@@ -136,7 +136,7 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
             break;
 
         case 6:
-            file = fopen("../pbm/num6.pbm", "r");
+            file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num6.pbm", "r");
             for(int g =0; g< 2 ; g++)
             {
                 fgets(lineRead, 71,file);
@@ -153,7 +153,7 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
             break;
 
         case 7:
-            file = fopen("../pbm/num7.pbm", "r");
+            file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num7.pbm", "r");
             for(int h =0; h< 2 ; h++)
             {
                 fgets(lineRead, 71,file);
@@ -170,7 +170,7 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
             break;
 
         case 8:
-            file = fopen("../pbm/num8.pbm", "r");
+            file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num8.pbm", "r");
             for(int l =0; l< 2 ; l++)
             {
                 fgets(lineRead, 71,file);
@@ -187,7 +187,7 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
             break;
 
         case 9:
-            file = fopen("../pbm/num9.pbm", "r");
+            file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num9.pbm", "r");
             for(int m =0; m< 2 ; m++)
             {
                 fgets(lineRead, 71,file);
@@ -282,18 +282,17 @@ int main()
             printf(". ");
             fflush(stdout);
 	    if(kbhit()){
-		char ch;
+            char ch;
     		ch = getch();
     		char kill = ' ';
     		if(ch == kill)
     		{
 			system("clear");
         		exit(1);
-    		}	
+    		}
 	}
         }
     }
-
     return 0;
 
 }

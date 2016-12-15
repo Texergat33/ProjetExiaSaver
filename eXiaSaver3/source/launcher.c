@@ -58,6 +58,7 @@ void movePlane(Plane* plane, char* direction){
         strcpy(plane->img.name, "planeHG.pbm");
         loadDirection(plane);
         plane->posX -= 3;
+        plane->posX = (plane->posX + 80)%80;
         placePBM(&sky, &plane->img, plane->posX,plane->posY);
 
     }

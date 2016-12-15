@@ -48,13 +48,12 @@ void loadDirection(Plane *plane){
     fclose(file);
 }
 
-void movePlane(Plane* plane, char* direction){
-    plane->direction = direction;
+void movePlane(Plane* plane){
     PBM sky;
     sky = createBlankPBM();
     strcpy(sky.name, "sky");
 
-    if(strcmp(direction, "left") == 0){
+    if(strcmp(plane->direction, "left") == 0){
         strcpy(plane->img.name, "planeHG.pbm");
         loadDirection(plane);
         plane->posX -= 3;
@@ -62,19 +61,19 @@ void movePlane(Plane* plane, char* direction){
         placePBM(&sky, &plane->img, plane->posX,plane->posY);
 
     }
-    else if(strcmp(direction, "up") == 0){
+    else if(strcmp(plane->direction, "up") == 0){
         strcpy(plane->img.name, "planeVH.pbm");
         loadDirection(plane);
         plane->posY -= 1;
         placePBM(&sky, &plane->img, plane->posX,plane->posY);
     }
-    else if(strcmp(direction, "right") == 0){
+    else if(strcmp(plane->direction, "right") == 0){
         strcpy(plane->img.name, "planeHD.pbm");
         loadDirection(plane);
         plane->posX += 3;
         placePBM(&sky, &plane->img, plane->posX,plane->posY);
     }
-    else if(strcmp(direction, "down") == 0){
+    else if(strcmp(plane->direction, "down") == 0){
         strcpy(plane->img.name, "planeVB.pbm");
         loadDirection(plane);
         plane->posY += 1;
@@ -132,28 +131,53 @@ void child_process(){
 
 void father_process(Plane *plane){
     char* key = malloc(SIZEKEY);
+    int integer;
+    int flags = fcntl(pipeDescriptor[0], F_GETFL, 0);
+    fcntl(pipeDescriptor[0], F_SETFL, flags | O_NONBLOCK);
     int quit = 1;
     while(quit){
         close(pipeDescriptor[1]);
-        read(pipeDescriptor[0], key, SIZEKEY);
-        switch(*key){
-            case 'q':
-                quit = 0;
-                break;
-            case 'l':
-                movePlane(plane, "left");
-                break;
-            case 'u':
-                movePlane(plane, "up");
-                break;
-            case 'r':
-                movePlane(plane, "right");
-                break;
-            case 'd':
-                movePlane(plane, "down");
-                break;
-            default:
-                break;
+        integer = read(pipeDescriptor[0], key, SIZEKEY);
+        usleep(75000);
+        if(integer < 0 && errno == EAGAIN){
+            movePlane(plane);
+        }else if(integer >=0 ){
+            switch(*key){
+                /*case 'q':
+                    quit = 0;
+                    break;
+                case 'l':
+                    movePlane(plane, "left");
+                    break;
+                case 'u':
+                    movePlane(plane, "up");
+                    break;
+                case 'r':
+                    movePlane(plane, "right");
+                    break;
+                case 'd':
+                    movePlane(plane, "down");
+                    break;
+                default:
+                    break;*/
+                case 'q':
+                    quit = 0;
+                    break;
+                case 'l':
+                    plane->direction = "left";
+                    break;
+                case 'u':
+                    plane->direction = "up";
+                    break;
+                case 'r':
+                    plane->direction = "right";
+                    break;
+                case 'd':
+                    plane->direction = "down";
+                    break;
+                default:
+                    break;
+            }
         }
     }
     free(key);

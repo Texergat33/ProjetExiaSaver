@@ -143,23 +143,6 @@ void father_process(Plane *plane){
             movePlane(plane);
         }else if(integer >=0 ){
             switch(*key){
-                /*case 'q':
-                    quit = 0;
-                    break;
-                case 'l':
-                    movePlane(plane, "left");
-                    break;
-                case 'u':
-                    movePlane(plane, "up");
-                    break;
-                case 'r':
-                    movePlane(plane, "right");
-                    break;
-                case 'd':
-                    movePlane(plane, "down");
-                    break;
-                default:
-                    break;*/
                 case 'q':
                     quit = 0;
                     break;

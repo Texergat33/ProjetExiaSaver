@@ -1,1 +1,2 @@
 Statique;14/12/2016 16:27:14;/home/agathe/ProjetExiaSaver/eXiaSaver1/pbm/ex06.pbm
+Interactif;15/12/2016 11:19:36;Interactif;15/12/2016 11:19:41;Interactif;15/12/2016 11:19:42;Dynamique;15/12/2016 11:19:43;Interactif;15/12/2016 11:19:45;

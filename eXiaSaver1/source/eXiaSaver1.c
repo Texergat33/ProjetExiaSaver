@@ -10,7 +10,7 @@ int main (int argc, char* argv[])
         printf("Error. Incorrect number of args\n"); //print an error message if there is not the name of the opened file
         return -1;
     }
-    PBM image; //
+    PBM image;
     char key; //create a char key which would accept keyboard inputs
     strcpy(image.name, argv[1]); //copy the name of the PBM file into argv[1]
     for(int i=0; i<80; i++)

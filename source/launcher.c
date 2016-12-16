@@ -3,34 +3,34 @@
 #include "launcher.h"
 
 char *selectPBM(char *pbm_directory){ //select a random pbm name
-    DIR* rep = opendir(pbm_directory);
+    DIR* rep = opendir(pbm_directory); //open the pbm directory
     if(rep != NULL)
     {
         struct dirent * ent;
         int count = 0; //count the number of pbms in the directory
-        while((ent = readdir(rep)) != NULL)
+        while((ent = readdir(rep)) != NULL) //read each file until the end of the directory
         {
-            if(strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0) count ++;
+            if(strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0) count ++;//if ent points on . or .., we don't want to increase count
         }
-        int random_nbr = rand_a_b(1, count);
-        rewinddir(rep);
+        int random_nbr = rand_a_b(1, count); //select a random number between 1 and the number of files in the directory
+        rewinddir(rep); //returns the pointer to the top of the directory
         count = 0;
-        while(count != random_nbr && (ent = readdir(rep)) != NULL)
+        while(count != random_nbr && (ent = readdir(rep)) != NULL)//if count == random_nbr then the file pointed by ent is the file randomly selected
         {
             if(strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0) count ++;
         }
         closedir(rep);
-        return ent->d_name;
+        return ent->d_name; //returns the name of the random file
     }
-    exit(-1);
+    exit(-1); //if the file can't be opened
 }
 
 void execSaver1(char* arguments[], char* exiasaver_home)
-{
-    char chemin[1024];
-    strcpy(chemin, exiasaver_home);
-    strcat(chemin, "/eXiaSaver1/eXiaSaver1");
-    if(execv(chemin, arguments) == -1)
+{ //execute the static saver with the correct args
+    char path[1024];
+    strcpy(path, exiasaver_home);
+    strcat(path, "/eXiaSaver1/eXiaSaver1");
+    if(execv(path, arguments) == -1)
     {
         perror("execv");
         exit(-1);
@@ -38,11 +38,11 @@ void execSaver1(char* arguments[], char* exiasaver_home)
 }
 
 void execSaver2(char* arguments[], char* exiasaver_home)
-{
-    char chemin[1024];
-    strcpy(chemin, exiasaver_home);
-    strcat(chemin, "/eXiaSaver2/eXiaSaver2");
-    if(execv(chemin, arguments) == -1)
+{ //execute the dynamic saver with the correct args
+    char path[1024];
+    strcpy(path, exiasaver_home);
+    strcat(path, "/eXiaSaver2/eXiaSaver2");
+    if(execv(path, arguments) == -1)
     {
         perror("execv");
         exit(-1);
@@ -50,11 +50,11 @@ void execSaver2(char* arguments[], char* exiasaver_home)
 }
 
 void execSaver3(char* arguments[], char* exiasaver_home)
-{
-    char chemin[1024];
-    strcpy(chemin, exiasaver_home);
-    strcat(chemin, "/eXiaSaver3/eXiaSaver3");
-    if(execv(chemin, arguments) == -1)
+{ //execute the interactive saver with the correct args
+    char path[1024];
+    strcpy(path, exiasaver_home);
+    strcat(path, "/eXiaSaver3/eXiaSaver3");
+    if(execv(path, arguments) == -1)
     {
         perror("execv");
         exit(-1);
@@ -62,37 +62,37 @@ void execSaver3(char* arguments[], char* exiasaver_home)
 }
 
 void launchExiaSaver1(char current_directory[1024], char *exiasaver_home)
-{
+{ //prepares the array of correct args for the static screen saver and creates a child process
     char* str = getenv("EXIASAVER1_PBM");
     char exiasaver1_pbm[1024];
     if(str != NULL) strcpy(exiasaver1_pbm, str);
     else strcpy(exiasaver1_pbm, current_directory);
-    char *random_pbm = selectPBM(exiasaver1_pbm);
+    char *random_pbm = selectPBM(exiasaver1_pbm);//select a random pbm file name
     char tolog[255];
     strcpy(tolog, random_pbm);
-    char* arguments[] = {"eXiaSaver1", random_pbm, NULL};
-    pid_t pid = create_process();
+    char* arguments[] = {"eXiaSaver1", random_pbm, NULL}; //arguments array
+    pid_t pid = create_process(); //creates a child process
     switch(pid)
     {
         case -1:
             perror("fork");
             exit(-1);
         case 0:
-            execSaver1(arguments, exiasaver_home);
+            execSaver1(arguments, exiasaver_home); //executes the static saver with the correct args array
             break;
         default:
-            if (wait(NULL) == -1)
+            if (wait(NULL) == -1) //wait for the end of the child process
             {
                 perror("wait :");
                 exit(-1);
             }
             break;
     }
-    logger(1, tolog);
+    logger(1, tolog); //log the launching
 }
 
 void launchExiaSaver2(char current_directory[1024], char *exiasaver_home)
-{
+{ //prepares the array of correct args for the dynamic screen saver and creates a child process
     char exiasaver2_pbm[1024];
     char* str = getenv("EXIASAVER2_PBM");
     if(str != NULL) strcpy(exiasaver2_pbm, str);
@@ -115,7 +115,7 @@ void launchExiaSaver2(char current_directory[1024], char *exiasaver_home)
             perror("fork");
             exit(-1);
         case 0:
-            execSaver2(arguments, exiasaver_home);
+            execSaver2(arguments, exiasaver_home); //executes the dynamic saver with the correct args array
             break;
         default:
             if (wait(NULL) == -1)
@@ -128,7 +128,7 @@ void launchExiaSaver2(char current_directory[1024], char *exiasaver_home)
 }
 
 void launchExiaSaver3(char current_directory[1024], char *exiasaver_home)
-{
+{ //prepares the array of correct args for the interactive screen saver and creates a child process
     char exiasaver3_pbm[1024];
     char* str = getenv("EXIASAVER3_PBM");
     if(str != NULL) strcpy(exiasaver3_pbm, str);
@@ -146,7 +146,7 @@ void launchExiaSaver3(char current_directory[1024], char *exiasaver_home)
             perror("fork");
             exit(-1);
         case 0:
-            execSaver3(arguments, exiasaver_home);
+            execSaver3(arguments, exiasaver_home); //executes the interactive saver with the correct args array
             break;
         default:
             if (wait(NULL) == -1)

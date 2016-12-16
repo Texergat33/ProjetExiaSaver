@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
         getcwd(current_directory, 1024); //get current directory
         int rnum = rand_a_b(1, 3); //random number to define the screen saver to launch
         char* str = getenv("EXIASAVER_HOME"); //get env home var
-        if(str != NULL) strcpy(exiasaver_home, str);
+        if(str != NULL) strcpy(exiasaver_home, str); //copy str if she exists
         else strcpy(exiasaver_home, current_directory);
         switch(rnum)
         {

@@ -230,7 +230,7 @@ void displayImageTable(int imageTable[80][24])
     printf("\n");
 }
 
-int kbhit(void)//That function is here to kill the process, i took it on the internet and i can't really explain it
+int kbhit(void)//That function is here to check if there is a user input, i took it on the internet and i can't really explain it
 {
  struct termios oldt, newt;
  int ch;

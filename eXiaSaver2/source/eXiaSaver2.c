@@ -43,12 +43,12 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
             {
                 for(int k = 0; k < 3; k++)
                 {
-                    fscanf(file, "%d", &frameValue);//Then, for the picture
-                    imageTable[(23+i*6)+k][5+z] = frameValue;
+                    fscanf(file, "%d", &frameValue);//Then, we read the file
+                    imageTable[(23+i*6)+k][5+z] = frameValue;//And we place it on the table
                 }
             }
-            fclose(file);
-            break;
+            fclose(file);//We close the file
+            break;//The break is here to avoid problems with the different cases.
 
         case 1:
             file = fopen("/home/spadesjack/ProjetExiaSaver/eXiaSaver2/pbm/num1.pbm", "r");
@@ -211,18 +211,18 @@ void placeNumbersInHourTable(int imageTable[80][24])//Permits to get the actual 
 
 void displayImageTable(int imageTable[80][24])
 {
-    char c[] = {226, 150, 136, 0};
-    for (int i = 0 ; i < 20; i++)
+    char c[] = {226, 150, 136, 0};//Permits to print ASCII characters
+    for (int i = 0 ; i < 20; i++)//We read hte table
     {
         for (int j = 0; j < 80; j++)
         {
-            if(imageTable[j][i] == 0)
+            if(imageTable[j][i] == 0)//And if the frame contains a 0,
             {
-                printf(" ");
+                printf(" "); //We print a space
             }
-            else
+            else //If it contains something else (that is to say a 1),
             {
-                printf("%s", c);
+                printf("%s", c);//We print the character, that will be a white square.
             }
         }
         printf("\n");
@@ -230,7 +230,7 @@ void displayImageTable(int imageTable[80][24])
     printf("\n");
 }
 
-int kbhit(void)
+int kbhit(void)//That function is here to kill the process, i took it on the internet and i can't really explain it
 {
  struct termios oldt, newt;
  int ch;
@@ -259,29 +259,29 @@ int kbhit(void)
 
 int main()
 {
-    int sleepTime = 10;
-    sleepTime = atoi(getenv("EXIASAVER2_SLEEP"));
-    int imageTable[80][24] = {0};
-    PBM image;
+    int sleepTime = 10; //We initialize the time between the hour refresh;
+    sleepTime = atoi(getenv("EXIASAVER2_SLEEP")); //If there is an env var, the refreshing time will take it's value
+    int imageTable[80][24] = {0};//Then we initialize the table for the next function
+    PBM image;//Then we create two PBM structs that will be used for the next functions
     PBM hour;
-    image.length = 5;
+    image.length = 5;//We initialise some variables in those structures
     image.width = 39;
     hour.length = 5;
     hour.width = 3;
 
-    while(1)
+    while(1)//Infinite loop
     {
-        system("clear");
-        placeNumbersInHourTable(imageTable);
-        displayImageTable(imageTable);
-        printf("\n                 Actualisation toutes les %d secondes ",sleepTime);
-        fflush(stdout);
-        for (int i = 0; i<sleepTime; i++)
+        system("clear");//We clear the console
+        placeNumbersInHourTable(imageTable);//We place the hour in the table
+        displayImageTable(imageTable);//We display that table
+        printf("\n                       Refreshing in %d seconds ",sleepTime);//Then we print the refreshing message 
+        fflush(stdout);//We use this to avoid that the sleep call stops everything
+        for (int i = 0; i<sleepTime; i++)//Then, for the value of sleepTime in seconds,
         {
-            sleep(1);
-            printf(". ");
+            sleep(1);//We wait 1 sec
+            printf(". ");//We print a dot.
             fflush(stdout);
-	    if(kbhit()){
+	    if(kbhit()){//And we use the function to kill the process if we press the spacebar.
             char ch;
     		ch = getch();
     		char kill = ' ';
@@ -293,7 +293,7 @@ int main()
 	}
         }
     }
-    return 0;
+    return 0;//And our function will return nothing
 
 }
 

@@ -9,8 +9,8 @@ void printStats()                                                 //Fonction per
     char* hour = "";
     char* launcher = "";
     FILE* file = NULL;
-    file = fopen("history.txt", "r");
-    char* item;
+    file = fopen("history.txt", "r"); //open the file where the logs are save
+    char* item;//variable which contains the line to be filled
     int i=0;
     char line[TAILLE_MAX];
     if(file != NULL){
@@ -22,19 +22,18 @@ void printStats()                                                 //Fonction per
                 case 1:
                         while(fgets(line, TAILLE_MAX, file) != NULL){
                             for (item = strtok(line, ";"); item != NULL; item = strtok(NULL, ";")){
-                                if(i==0) date = item;
-                                else if(i==2) level = item;
-                                else if(i==3) loginfo = item;
+                                if(i==0) date = item; //write the date on the first case of the line
+                                else if(i==2) level = item; //write the type of screen saver on the second case of the line
+                                else if(i==3) loginfo = item; //write the caracteristics of the saver on the third case of the line
                                 i++;
                             }
-                            if(strcmp(level, "1")==0) launcher = "static";
+                            if(strcmp(level, "1")==0) launcher = "static"; 
                             else if(strcmp(level, "2")==0) launcher = "dynamic";
                             else if(strcmp(level, "3")==0) launcher = "interactive";
                             printf("%s, the %s saver has been launched with the %s parameter\n", date, launcher, loginfo);
                         }
                     break;
                 case 2:
-                    //system("sort -d historique.txt"
                     break;
                 default:
                     printf("Error. Not a good choice.\n\n");
